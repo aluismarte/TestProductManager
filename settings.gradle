@@ -1,2 +1,3 @@
 rootProject.name = 'TestProductManager'
+include 'AuthServer'
 
