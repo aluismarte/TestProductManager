@@ -26,6 +26,6 @@ public class CreateProductRequest {
     private Double price;
 
     public Product toProduct() {
-        return new Product(null, name, price, false);
+        return new Product(null, name, price, false, false);
     }
 }

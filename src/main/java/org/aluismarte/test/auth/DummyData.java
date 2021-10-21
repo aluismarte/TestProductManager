@@ -21,8 +21,8 @@ public class DummyData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        productRepository.save(new Product(null, "Uva", 150.0, false));
-        productRepository.save(new Product(null, "Manzana", 60.0, false));
+        productRepository.save(new Product(null, "Uva", 150.0, false, false));
+        productRepository.save(new Product(null, "Manzana", 60.0, false, false));
         System.out.println("Finish insert");
     }
 }

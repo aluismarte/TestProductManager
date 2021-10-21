@@ -4,6 +4,7 @@ import org.aluismarte.test.auth.model.CreateProductRequest;
 import org.aluismarte.test.auth.model.CreateProductResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -15,10 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * Created by Aluis on 10/21/2021.
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTest {
 
-    private final String baseUrl = "http://localhost:8081/";
+    @LocalServerPort
+    private int port;
 
     @Test
     void login() {
@@ -33,25 +35,17 @@ public class ProductControllerTest {
         map.add("client_id", "clientapp");
         map.add("username", "creator@aluis.com");
         map.add("password", "demo");
-
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-
-        String url = baseUrl + "oauth/authorize?client_id=clientapp&response_type=code&scope=read_profile_info";
-//        String url = baseUrl + "login";
-
+        String url = getBaseURL() + "login";
         System.out.println(url);
-
         ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
-
         System.out.println(response.getStatusCode());
-
     }
-
 
     @Test
     void listTest() {
         RestTemplate restTemplate = new RestTemplate();
-        String forEntity = restTemplate.getForObject(baseUrl + "list", String.class);
+        String forEntity = restTemplate.getForObject(getBaseURL() + "api/list", String.class);
         System.out.println(forEntity);
     }
 
@@ -63,10 +57,14 @@ public class ProductControllerTest {
         createProductRequest.setName("Otro");
         createProductRequest.setPrice(20.0);
 
-        ResponseEntity<CreateProductResponse> responseEntity = restTemplate.postForEntity(baseUrl + "create", createProductRequest, CreateProductResponse.class);
+        ResponseEntity<CreateProductResponse> responseEntity = restTemplate.postForEntity(getBaseURL() + "api/create", createProductRequest, CreateProductResponse.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         CreateProductResponse createProductResponse = responseEntity.getBody();
         assertNotNull(createProductResponse);
+    }
+
+    private String getBaseURL() {
+        return "http://localhost:" + port + "/";
     }
 
 }
