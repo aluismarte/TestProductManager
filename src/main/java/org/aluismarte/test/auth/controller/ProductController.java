@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Validated
 @RestController
+@RequestMapping("/api")
 public class ProductController {
 
     // TODO create error handling
@@ -37,14 +38,14 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('PRODUCT_CREATORS')")
-//    @Secured("PRODUCT_CREATORS")
+    @Secured("PRODUCT_CREATORS")
     @RequestMapping(value = "/secured", method = RequestMethod.GET)
     public ResponseEntity<List<Product>> getAllSecured() {
         return ResponseEntity.ok(productRepository.findAll());
     }
 
-//    @PreAuthorize("hasAuthority('PRODUCT_MANAGERS')")
-    @Secured("PRODUCT_MANAGERS")
+    @PreAuthorize("hasAuthority('PRODUCT_MANAGERS')")
+//    @Secured("PRODUCT_MANAGERS")
     @RequestMapping(value = "/secured2", method = RequestMethod.GET)
     public ResponseEntity<String> getAllSecured2() {
         return ResponseEntity.ok("Managers");

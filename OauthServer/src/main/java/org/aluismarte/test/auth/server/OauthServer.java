@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 /**
  * Created by Aluis on 10/21/2021.
  */
+@SuppressWarnings("deprecation")
 @SpringBootApplication
 @EnableResourceServer
 public class OauthServer {

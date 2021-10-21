@@ -33,7 +33,7 @@ public class DummyData implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Role product_creators = roleRepository.save(new Role(null, PRODUCT_CREATORS));
         Role product_managers = roleRepository.save(new Role(null, PRODUCT_MANAGERS));
         Role product_pricing = roleRepository.save(new Role(null, PRODUCT_PRICING));
