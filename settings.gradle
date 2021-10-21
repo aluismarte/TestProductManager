@@ -1,3 +1,4 @@
 rootProject.name = 'TestProductManager'
 include 'AuthServer'
+include 'OauthServer'
 

@@ -1,15 +1,14 @@
-package org.aluismarte.test.auth.service;
+package org.aluismarte.test.auth.server.service;
 
-import org.aluismarte.test.auth.domain.User;
-import org.aluismarte.test.auth.model.CustomUserDetail;
-import org.aluismarte.test.auth.repository.UserRepository;
+import org.aluismarte.test.auth.server.domain.User;
+import org.aluismarte.test.auth.server.model.CustomUserDetail;
+import org.aluismarte.test.auth.server.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 
 /**
  * Created by Aluis on 10/21/2021.

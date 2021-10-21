@@ -5,6 +5,7 @@ import org.aluismarte.test.auth.model.CreateProductRequest;
 import org.aluismarte.test.auth.model.CreateProductResponse;
 import org.aluismarte.test.auth.repository.ProductRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,9 +37,17 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('PRODUCT_CREATORS')")
+//    @Secured("PRODUCT_CREATORS")
     @RequestMapping(value = "/secured", method = RequestMethod.GET)
     public ResponseEntity<List<Product>> getAllSecured() {
         return ResponseEntity.ok(productRepository.findAll());
+    }
+
+//    @PreAuthorize("hasAuthority('PRODUCT_MANAGERS')")
+    @Secured("PRODUCT_MANAGERS")
+    @RequestMapping(value = "/secured2", method = RequestMethod.GET)
+    public ResponseEntity<String> getAllSecured2() {
+        return ResponseEntity.ok("Managers");
     }
 
     @Transactional

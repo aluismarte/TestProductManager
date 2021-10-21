@@ -1,11 +1,12 @@
-package org.aluismarte.test.auth.model;
+package org.aluismarte.test.auth.server.model;
 
-import org.aluismarte.test.auth.domain.User;
+import org.aluismarte.test.auth.server.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -23,10 +24,11 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles()
+        List<SimpleGrantedAuthority> roles = user.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole()))
                 .collect(Collectors.toList());
+        return roles;
     }
 
     @Override

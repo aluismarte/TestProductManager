@@ -1,4 +1,4 @@
-package org.aluismarte.test.auth.controller;
+package org.aluismarte.test.auth.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

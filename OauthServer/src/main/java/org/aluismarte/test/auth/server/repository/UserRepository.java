@@ -1,6 +1,6 @@
-package org.aluismarte.test.auth.repository;
+package org.aluismarte.test.auth.server.repository;
 
-import org.aluismarte.test.auth.domain.User;
+import org.aluismarte.test.auth.server.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

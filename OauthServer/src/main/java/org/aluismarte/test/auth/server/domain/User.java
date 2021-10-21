@@ -1,4 +1,4 @@
-package org.aluismarte.test.auth.domain;
+package org.aluismarte.test.auth.server.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
