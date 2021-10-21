@@ -3,7 +3,6 @@ package org.aluismarte.test.auth;
 import org.aluismarte.test.auth.domain.Product;
 import org.aluismarte.test.auth.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,23 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class DummyData implements CommandLineRunner {
 
-    public static final String PRODUCT_CREATORS = "PRODUCT_CREATORS";
-    public static final String PRODUCT_MANAGERS = "PRODUCT_MANAGERS";
-    public static final String PRODUCT_PRICING = "PRODUCT_PRICING";
-
     private final ProductRepository productRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public DummyData(ProductRepository productRepository, PasswordEncoder passwordEncoder) {
+    public DummyData(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        productRepository.save(new Product(null, "Uva", 150.0));
-        productRepository.save(new Product(null, "Manzana", 60.0));
-
+    public void run(String... args) {
+        productRepository.save(new Product(null, "Uva", 150.0, false));
+        productRepository.save(new Product(null, "Manzana", 60.0, false));
         System.out.println("Finish insert");
     }
 }

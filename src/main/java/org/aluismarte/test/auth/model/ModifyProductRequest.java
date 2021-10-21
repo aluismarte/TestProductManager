@@ -16,16 +16,11 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CreateProductRequest {
+public class ModifyProductRequest {
+
+    @NotNull
+    private Long id;
 
     @NotNull
     private String name;
-
-    @NotNull
-    @Positive
-    private Double price;
-
-    public Product toProduct() {
-        return new Product(null, name, price, false);
-    }
 }
