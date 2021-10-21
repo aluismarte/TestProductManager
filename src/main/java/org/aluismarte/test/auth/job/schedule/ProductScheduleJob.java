@@ -10,13 +10,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.stereotype.Component;
 
 /**
- * Es un trabajo para verificar mantener en control el software.
- * <p>
- * Elimino todos los password que esten fuera de hora en la DB y limpio esa tabla.
- * <p>
- * <p>
- * return "0 0 0-23 * * ?";
- * Created by aluis on 8/15/20.
+ * Created by aluis on 10/21/2021.
  */
 @Component
 public class ProductScheduleJob extends ScheduleJob {

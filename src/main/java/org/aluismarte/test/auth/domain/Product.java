@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  * Created by Aluis on 10/21/2021.
@@ -26,9 +27,13 @@ public class Product {
     private String name;
 
     @Column
+    @PositiveOrZero
     private double price;
 
     @Column
     private boolean haveChanges = false;
+
+    @Column
+    private boolean deleted = false;
 
 }

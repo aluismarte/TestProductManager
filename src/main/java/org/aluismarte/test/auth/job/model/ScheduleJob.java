@@ -5,7 +5,7 @@ import org.quartz.Job;
 /**
  * http://www.quartz-scheduler.org/documentation/quartz-2.2.x/examples/Example3.html
  * <p>
- * Created by aluis on 8/15/20.
+ * Created by aluis on 10/21/2021.
  */
 public abstract class ScheduleJob implements Job {
 

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
 /**
- * Created by aluis on 8/15/20.
+ * Created by aluis on 10/21/2021.
  */
 @Configuration
 public class ScheduleManager extends AbstractScheduleManager {

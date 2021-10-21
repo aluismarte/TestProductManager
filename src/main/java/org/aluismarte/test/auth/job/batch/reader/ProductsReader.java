@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by aluis on 9/2/20.
+ * Created by aluis on 10/21/2021.
  */
 @Component
 public class ProductsReader extends RepositoryItemReader<Product> {
 
     public ProductsReader(ProductRepository productRepository) {
         setRepository(productRepository);
-        setMethodName("findAllByHaveChangesIsTrue");
+        setMethodName("findAllByHaveChangesIsTrueAndDeletedIsFalse");
         setPageSize(100);
         Map<String, Sort.Direction> sort = new HashMap<>();
         sort.put("id", Sort.Direction.ASC);

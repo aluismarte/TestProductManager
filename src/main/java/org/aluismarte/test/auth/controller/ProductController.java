@@ -1,6 +1,7 @@
 package org.aluismarte.test.auth.controller;
 
 import org.aluismarte.test.auth.domain.Product;
+import org.aluismarte.test.auth.exceptions.ProductNoFoundException;
 import org.aluismarte.test.auth.model.*;
 import org.aluismarte.test.auth.repository.ProductRepository;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,10 @@ public class ProductController {
     @PreAuthorize("hasAuthority(@R.PRODUCT_MANAGERS)")
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
     public ResponseEntity<ModifyProductResponse> modifyProduct(@Valid ModifyProductRequest modifyProductRequest) {
+        Product product = productRepository.findById(modifyProductRequest.getId()).orElseThrow(ProductNoFoundException::new);
+        product.setName(modifyProductRequest.getName());
+        product.setHaveChanges(true);
+        productRepository.save(product);
         return ResponseEntity.ok(new ModifyProductResponse());
     }
 
@@ -55,6 +60,10 @@ public class ProductController {
     @PreAuthorize("hasAuthority(@R.PRODUCT_MANAGERS)")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseEntity<DeleteProductResponse> deleteProduct(@Valid DeleteProductRequest deleteProductRequest) {
+        Product product = productRepository.findById(deleteProductRequest.getId()).orElseThrow(ProductNoFoundException::new);
+        product.setDeleted(true);
+        product.setHaveChanges(true);
+        productRepository.save(product); // This could have to be soft, but is a test
         return ResponseEntity.ok(new DeleteProductResponse());
     }
 
@@ -62,6 +71,10 @@ public class ProductController {
     @PreAuthorize("hasAuthority(@R.PRODUCT_PRICING)")
     @RequestMapping(value = "/modify/price", method = RequestMethod.POST)
     public ResponseEntity<ModifyPriceProductResponse> modifyPriceProduct(@Valid ModifyPriceProductRequest modifyPriceProductRequest) {
+        Product product = productRepository.findById(modifyPriceProductRequest.getId()).orElseThrow(ProductNoFoundException::new);
+        product.setPrice(modifyPriceProductRequest.getPrice());
+        product.setHaveChanges(true);
+        productRepository.save(product);
         return ResponseEntity.ok(new ModifyPriceProductResponse());
     }
 

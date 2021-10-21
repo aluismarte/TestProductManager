@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by aluis on 9/2/20.
+ * Created by aluis on 10/21/2021.
  */
 @Configuration
 public class ProductBatch {
@@ -34,7 +34,7 @@ public class ProductBatch {
     }
 
     @Bean
-    public Step forgotPasswordStep1() {
+    public Step productStep1() {
         return stepBuilderFactory.get("step1").<Product, Product>chunk(1)
                 .reader(productsReader)
                 .processor(productsProcessor)
@@ -47,7 +47,7 @@ public class ProductBatch {
     public Job forgotPasswordJob(JobListener jobListener) {
         return jobBuilderFactory.get("productJob")
                 .listener(jobListener)
-                .flow(forgotPasswordStep1())
+                .flow(productStep1())
                 .end()
                 .build();
     }

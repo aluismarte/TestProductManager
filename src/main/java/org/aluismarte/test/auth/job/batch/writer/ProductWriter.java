@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Created by aluis on 9/2/20.
+ * Created by aluis on 10/21/2021.
  */
 @Component
 public class ProductWriter extends JpaItemWriter<Product> {
