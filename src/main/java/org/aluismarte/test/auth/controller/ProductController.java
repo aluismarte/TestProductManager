@@ -24,6 +24,7 @@ import java.util.List;
 public class ProductController {
 
     // TODO create error handling
+    // TODO en cada request hacer un push al webhook
 
     private final ProductRepository productRepository;
 
@@ -35,7 +36,6 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAll() {
         return ResponseEntity.ok(productRepository.findAll());
     }
-
 
     @Transactional
     @PreAuthorize("hasAuthority(@R.PRODUCT_CREATORS)")
